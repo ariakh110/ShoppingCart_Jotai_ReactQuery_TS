@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
+
+  //create a function that returns a JSX element
+  function sayHello(Title: string): JSX.Element {
+    return <h1>Hello {Title}</h1>;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {sayHello('World')}
     </div>
   );
 }
