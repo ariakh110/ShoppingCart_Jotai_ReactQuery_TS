@@ -1,8 +1,6 @@
-import { type } from '@testing-library/user-event/dist/type';
-import { log } from 'console';
-import { atom } from 'jotai';
-
-const URL = 'https://fakestoreapi.com/products';
+import { atom, useAtom } from 'jotai';
+import { atomWithQuery } from 'jotai/query'
+import * as api from './api/api';
 
 //interface
 interface Cart {
@@ -24,12 +22,16 @@ interface Product {
 
 export const Loading = atom(false);
 export const Error = atom(false);
-export const Products = atom<[]>([]);
 
 
-//fn
-export const getProducts = () => {
-    return fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
+export const getProducts = atomWithQuery((get) => ({
+    queryKey: ['products'],
+    queryFn: () => {
+        const res = api.getProducts();
+        return res;
+    },
+}))
+
+export const useToggle = () => {
+    const [pro, setPro] = useAtom(getProducts);
 }
-
