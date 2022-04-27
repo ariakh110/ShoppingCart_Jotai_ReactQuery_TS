@@ -2,9 +2,9 @@ import React from 'react'
 import * as api from "./api/api";
 import { useQuery } from "react-query";
 import { atomWithQuery } from 'jotai/query'
-import { useAtom } from 'jotai'
+import { useAtom, atom } from 'jotai';
 
-interface CartItemType {
+export interface CartItemType {
     id: number,
     title: string,
     price: number,
